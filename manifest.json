@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-readavocado-sync",
+	"name": "Readavocado Sync",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Sync your Readavocado highlights with Obsidian",
+	"author": "Cyrus Zhang",
+	"authorUrl": "https://readavocado.com",
+	"isDesktopOnly": false
+}
