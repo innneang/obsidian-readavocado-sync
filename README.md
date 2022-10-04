@@ -8,4 +8,4 @@ This plugin automatically export your [Readavocado](https://readavocado.com) hig
 - Paste your token in the "Readavocado Token" box
 - Click Initiate Sync
 
-**Note:** The plugin will trigger sync every time at the app open or you can manually trigger sync in the plugin's setting.
+**Note:** The plugin trigger sync every time at the app open or you can manually trigger sync in the plugin's setting.
