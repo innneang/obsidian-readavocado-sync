@@ -1,6 +1,6 @@
 # Readavocado Sync Plugin
 
-This is a plugin automatically export your [Readavocado](https://readavocado.com) highlights into your Obsidian vault.
+This plugin automatically export your [Readavocado](https://readavocado.com) highlights into your Obsidian vault.
 
 # Usage
 - Install the Readavocado Sync Plugin
