@@ -29,7 +29,7 @@ const DEFAULT_SETTINGS: ReadavocadoPluginSettings = {
 	avocadoToken: "default",
 	lastSyncTime: 0,
 	rootFolder: "Avocado",
-	syncInterval: 60,
+	syncInterval: 5,
 	mapping: {},
 };
 
@@ -62,7 +62,7 @@ export default class ReadavocadoPlugin extends Plugin {
 
 	async callApi() {
 		if(!((Date.now() - this.settings.lastSyncTime) / 1000 / 60 > this.settings.syncInterval)) {
-			console.log((Date.now() - this.settings.lastSyncTime) / 1000 / 60, ' Sync not initiated. (minutes since last sync < 60)');
+			new Notice("Avocado: Wait for " + (this.settings.syncInterval - (Date.now() - this.settings.lastSyncTime) / 1000 / 60).toFixed(2) + ' min until next sync');
 			return;
 		}
 		const storeFolder = this.app.vault.getAbstractFileByPath(
