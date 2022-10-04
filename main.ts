@@ -179,10 +179,10 @@ class AvocadoSettingTab extends PluginSettingTab {
 			.setDesc("Default is 'Avocado' but you can change the way you want")
 			.addText((text) =>
 				text
-					.setPlaceholder("Enter your secret")
+					.setPlaceholder("Enter base folder name")
 					.setValue(this.plugin.settings.rootFolder)
 					.onChange(async (value) => {
-						console.log("Secret: " + value);
+						console.log("Base folder: " + value);
 						this.plugin.settings.rootFolder = value;
 						this.plugin.settings.mapping = {};
 						await this.plugin.saveSettings();
