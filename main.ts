@@ -1,10 +1,7 @@
-// @ts-nocheck
 import {
 	App,
 	DataAdapter,
 	Editor,
-	MarkdownView,
-	Modal,
 	Notice,
 	Plugin,
 	PluginSettingTab,
@@ -21,7 +18,11 @@ interface ReadavocadoPluginSettings {
 	rootFolder: string;
 	lastSyncTime: number;
 	syncInterval: number;
-	mapping: Object;
+	mapping: Mapping;
+}
+
+interface Mapping {
+	[obsidianPath: string]: number[];
 }
 
 const DEFAULT_SETTINGS: ReadavocadoPluginSettings = {
