@@ -76,25 +76,24 @@ export default class ReadavocadoPlugin extends Plugin {
 		}
 		let response
 		try {
-			response = await fetch(apiURL + "obsidian/fetch/allbooks", {
+			response = await requestUrl({
+				url: apiURL + "obsidian/fetch/allbooks",
+				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${this.settings.avocadoToken}`,
 				},
 			});
-	
 		} catch (error) {
-			console.log(error)
-			return;
-		}
-		new Notice("Avocado: Fetching new highlights");
-		if(!response.ok){
-			console.log(response, 'die200');
-			if(response.status == 405){
+			if(error.status == 405) {
 				new Notice("Avocado: Invalid token");
+			}
+			else{
+				new Notice("Avocado: Uncaught error");
 			}
 			return;
 		}
-		const data = await response.json();
+		new Notice("Avocado: Fetching new highlights");
+		const data = response.json;
 
 		for (const books of data) {
 			let storeFile = this.app.vault.getAbstractFileByPath(
@@ -127,15 +126,16 @@ export default class ReadavocadoPlugin extends Plugin {
 		}
 
 		for (const [key, value] of Object.entries(this.settings.mapping)) {
-			const response = await fetch(
-				apiURL + `obsidian/fetch/${value[0]}/${value[1]}`,
+			const response = await requestUrl(
 				{
+					url: apiURL + `obsidian/fetch/${value[0]}/${value[1]}`,
+					method: 'GET',
 					headers: {
 						Authorization: `Bearer ${this.settings.avocadoToken}`,
 					},
 				}
 			);
-			const data = await response.json();
+			const data = response.json;
 			//TODO: Check in batch if there are new highlights (improve performance)
 			let writeFile = this.app.vault.getAbstractFileByPath(key);
 			if (writeFile instanceof TFile) {
