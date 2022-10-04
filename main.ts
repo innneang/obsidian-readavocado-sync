@@ -11,10 +11,10 @@ import {
 	Setting,
 	Vault,
 	TFile,
+	requestUrl,
 	TFolder,
 } from "obsidian";
 
-// Remember to rename these classes and interfaces!
 
 interface ReadavocadoPluginSettings {
 	avocadoToken: string;
@@ -41,10 +41,6 @@ export default class ReadavocadoPlugin extends Plugin {
 		await this.loadSettings();
 
 		this.addSettingTab(new AvocadoSettingTab(this.app, this));
-		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(
-			window.setInterval(() => console.log("setInterval"), 5 * 60 * 1000)
-		);
 
 		this.callApi();
 	}
@@ -147,22 +143,6 @@ export default class ReadavocadoPlugin extends Plugin {
 		}
 		this.settings.lastSyncTime = Date.now();
 		this.saveSettings();
-	}
-}
-
-class AvocadoModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
-
-	onOpen() {
-		const { contentEl } = this;
-		contentEl.setText("Woah!");
-	}
-
-	onClose() {
-		const { contentEl } = this;
-		contentEl.empty();
 	}
 }
 
